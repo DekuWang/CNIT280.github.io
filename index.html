@@ -3,16 +3,30 @@
 <head>
     <title>Login Page</title>
     <script>
+        var userDB = {
+            "admin": {
+                "password": "admin",
+                "Username": "Admin"}
+            }   
+            
+        // var userDB = jQuery.parseJSON(userDB);
+
         function validateLogin() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
             // Simple validation logic
-            if (username === "user" && password === "pass") {
+            if (userDB[username] && userDB[username]["password"] == password) {
                 alert("login_success");
+                redirection();
             } else {
                 alert("login_fail");
             }
+        }
+        function redirection(){
+            window.location.href = "after_login.html";
+            var user = document.getElementById("username").value;
+            document.getElementsByClassName("login_hello")[0].innerHTML = "Hello " + user;
         }
     </script>
 </head>
