@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src = "script.js"></script>
 </head>
 <body>
     <h1>LOGIN SUCCESSFULLY</h1>
-    <p, class="login_hello">Hello </p>
+    <p id="login_hello">Hello </p>
 </body>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    if (username){
+        document.getElementById("login_hello").innerHTML += username;
+    }
+    else{
+        document.getElementById("login_hello").innerHTML += "Guest";
+    }
+
+</script>
 </html>
