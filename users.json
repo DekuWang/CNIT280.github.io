@@ -1,0 +1,12 @@
+{
+    "admin": {
+        "shown_name": "Admin",
+        "password": "admin",
+        "role": "admin"
+    },
+    "user": {
+        "shown_name": "User",
+        "password": "user",
+        "role": "user"
+    }
+}
