@@ -5,16 +5,25 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
     <script src="script.js"></script>
 </head>
+<style>
+    body{
+        background: #f1f1f1;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    </style>
 <body>
-
-<h1>Login</h1>
-<form onsubmit="event.preventDefault(); validateLogin();">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username"><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password"><br><br>
-    <button type="submit">Login</button>
-</form>
-
+    <div id = "Login">
+        <h1>Login</h1>
+        <form onsubmit="event.preventDefault(); validateLogin();">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
 </html>
