@@ -3,7 +3,7 @@ function validateLogin() {
     var password = document.getElementById("password").value;
 
 
-    fetch("./users.json")
+    fetch("./database/users.json")
     .then(response => response.json())
     .then(data => {
         const userDB = data;

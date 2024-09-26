@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    body{
+        background: #f1f1f1;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    #getback {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+    }
+</style>
+<script>
+    function initialize(){
+        fetch("./database/room_information.json")
+        .then(response => response.json())
+        .then(data => {
+        console.log(data);
+
+        let table = document.createElement("table");
+        let tr = document.createElement("tr");
+        let th = document.createElement("th");
+        th.innerHTML = "";
+        tr.appendChild(th);
+        th = document.createElement("th");
+        th.innerHTML = "Size";
+        tr.appendChild(th);
+        th = document.createElement("th");
+        th.innerHTML = "Location";
+        tr.appendChild(th);
+        th = document.createElement("th");
+        th.innerHTML = "Price";
+        tr.appendChild(th);
+        th = document.createElement("th");
+        th.innerHTML = "Capacity";
+        tr.appendChild(th);
+        th = document.createElement("th");
+        th.innerHTML = "";
+        tr.appendChild(th);
+        table.appendChild(tr);
+        for (var room in data){
+            console.log(data[room]);
+            tr = document.createElement("tr");
+            let td = document.createElement("td");
+            // image
+            var img = new Image();
+            img.src = data[room].img;
+            img.height, img.width = 100, 100;
+            td.innerHTML = img.outerHTML;
+            tr.appendChild(td);
+            td = document.createElement("td");
+            // size
+            td.innerHTML = data[room].size;
+            tr.appendChild(td);
+            td = document.createElement("td");
+            // location
+            td.innerHTML = data[room].location;
+            tr.appendChild(td);
+            td = document.createElement("td");
+            // price
+            td.innerHTML = data[room].price;
+            tr.appendChild(td);
+            td = document.createElement("td");
+            // capacity
+            td.innerHTML = data[room].capacity;
+            tr.appendChild(td);
+            td = document.createElement("td");
+            // book button
+            let button = document.createElement("button");
+            button.innerHTML = "Book";
+            button.onclick = function(){
+                window.location.href = "room_information.html?room=" + room;
+            }
+            td.appendChild(button);
+            tr.appendChild(td);
+            table.appendChild(tr);
+        }
+        document.body.appendChild(table);
+    });
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="initialize()">
+    <h1>Room List</h1>
+    <div id = getback>
+        <button>
+            <img src="/Images/back_icon.png" width="50" height="50" onclick="history.back()">
+        </button>
+    </div>
+</body>
+</html>
