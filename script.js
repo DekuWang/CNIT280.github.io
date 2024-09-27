@@ -18,7 +18,7 @@ function validateLogin() {
     }
 )}
 function redirection(username = NaN){
-    window.location.href = `after_login.html?username=${username}`;
+    window.location.href = `customer_portal.html?username=${username}`;
 }
 
 function test(){

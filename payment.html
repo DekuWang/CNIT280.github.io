@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        function togglePaymentInfo() {
+            var creditCardInfo = document.getElementById("credit-card-info");
+            var paypalInfo = document.getElementById("paypal-info");
+
+            if (document.getElementById("credit-card").checked) {
+                creditCardInfo.style.display = "block";
+                paypalInfo.style.display = "none";
+            } else if (document.getElementById("paypal").checked) {
+                creditCardInfo.style.display = "none";
+                paypalInfo.style.display = "block";
+            } else {
+                creditCardInfo.style.display = "none";
+                paypalInfo.style.display = "none";
+            }
+        }
+
+        function submit_payment(){
+            alert("Payment Submitted!");
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            var link = "invoice.html?room=" + urlParams.get('room') + "&date=" + urlParams.get('date') + "&username=" + urlParams.get('username');
+            location.href = link
+            // console.log(link);
+        }
+    </script>
+    <head>
+        <title>Payment Page</title>
+        <style>
+            .payment-info {
+                display: none;
+            }
+        </style>
+    </head>
+    <style>
+        #getback {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+    <body>
+
+        <h1>Payment Page</h1>
+            <form>
+                <label>
+                    <input type="radio" id="credit-card" name="payment-method" onclick="togglePaymentInfo()"> Credit Card
+                </label><br>
+                <label>
+                    <input type="radio" id="paypal" name="payment-method" onclick="togglePaymentInfo()"> PayPal
+                </label><br><br>
+
+                <div id="credit-card-info" class="payment-info">
+                    <h3>Credit Card Information</h3>
+                    <label for="cc-number">Card Number:</label>
+                    <input type="text" id="cc-number" name="cc-number"><br><br>
+                    <label for="cc-expiry">Expiry Date:</label>
+                    <input type="text" id="cc-expiry" name="cc-expiry"><br><br>
+                    <label for="cc-cvc">CVC:</label>
+                    <input type="text" id="cc-cvc" name="cc-cvc"><br><br>
+                </div>
+
+                <div id="paypal-info" class="payment-info">
+                    <h3>PayPal Information</h3>
+                    <label for="paypal-email">PayPal Email:</label>
+                    <input type="email" id="paypal-email" name="paypal-email"><br><br>
+                </div>
+            </form>
+
+        <button onclick = "submit_payment()">Submit Payment</button>
+
+        <div id = getback>
+            <button>
+                <img src="/Images/back_icon.png" width="50" height="50" onclick="history.back()">
+            </button>
+            <button>
+                <img src="/Images/feedback.png" width="50" height="50" onclick="location.href = 'feedback.html'">
+            </button>
+        </div>
+
+    </body>
+</html>

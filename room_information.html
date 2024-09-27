@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const room = urlParams.get('room');
+
+    fetch("./database/room_information.json")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementsByName("Image")[0].children[0].children[0].src = data[room].img;
+
+
+        document.getElementsByName("Size")[0].children[1].innerHTML = data[room].size;
+
+        document.getElementsByName("Location")[0].children[1].innerHTML = data[room].location;
+
+        document.getElementsByName("Price")[0].children[1].innerHTML = data[room].price;
+        
+        document.getElementsByName("Capacity")[0].children[1].innerHTML = data[room].capacity;
+        
+        var details = data[room].details;
+        
+        for (var i in details){
+            document.getElementsByName("Details")[0].children[1].innerHTML += details[i] + "<br>";
+        }
+    });
+
+    function book_now(){
+        var next_page = "payment.html?room=" + room + "&date=" + document.getElementById("date-select").value + "&username=" + urlParams.get('username');
+        window.location.href = next_page;
+    }
+
+    function date_restriction(){
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        max_date = yyyy + '-' + (parseInt(mm) + 1) + '-' + dd;
+        document.getElementById("date-select").setAttribute("min", today);
+        document.getElementById("date-select").setAttribute("max", max_date);
+    }
+</script>
 <style>
     table {
       font-family: arial, sans-serif;
@@ -35,32 +77,61 @@
         bottom: 10px;
         left: 10px;
     }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
 </style>
-<body>
+<body onload="date_restriction()">
     <table>
-        <tr>
-            <th></th>
-            <th>Size</th>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Capacity</th>
-            <th></th>
-        </tr>
-        <tr>
-            <th></th>
-            <th>1156</th>
-            <th>123 Purdue rd.</th>
-            <th>12412</th>
-            <th></th>
-            <th>
-                <button>Book</button>
-            </th>
-        </tr>
+        <thead>
+            <tr name = "Image">
+                <th colspan="3">
+                    <img src="./Images/Rooms/Room1/img.webp" height="500pt" class="center">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr name = Size>
+                <td>Size</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr name = Location>
+                <td>Location</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr name = Price>
+                <td>Price</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr name = Capacity>
+                <td>Capacity</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr name = Details>
+                <td>Details</td>
+                <td colspan="2"></td>
+            </tr>
+        </tbody>
     </table>
+
+    <tr name="Date">
+        <td>Date</td>
+        <td colspan="2">
+            <input type="date" id="date-select">
+        </td>
+    </tr>
+
+    <button id = BookNow onclick = "book_now()">Book Now!</button>
 
     <div id = getback>
         <button>
             <img src="/Images/back_icon.png" width="50" height="50" onclick="history.back()">
+        </button>
+        <button>
+            <img src="/Images/feedback.png" width="50" height="50" onclick="location.href = 'feedback.html'">
         </button>
     </div>
 

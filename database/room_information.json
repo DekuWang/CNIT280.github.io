@@ -4,17 +4,53 @@
         "size": "400 sqft",
         "location": "1365 West Lafayette, IN",
         "price": "80$/hr", 
-        "capacity": "8 people"}, 
+        "capacity": "8 people",
+        "details": {
+            "pet_friendly": true,
+            "food": true,
+            "wifi": true,
+            "parking": true,
+            "projector": true,
+            "whiteboard": true,
+            "printer": true,
+            "ac": true,
+            "heater": true
+            }
+        }, 
     "room2": {
         "img": "./Images/Rooms/Room2/img.webp",
         "size": "500 sqft",
         "location": "1365 West Lafayette, IN",
         "price": "100$/hr", 
-        "capacity": "10 people"},
+        "capacity": "10 people",
+        "details": {
+            "pet_friendly": true,
+            "food": true,
+            "wifi": true,
+            "parking": true,
+            "projector": true,
+            "whiteboard": true,
+            "printer": true,
+            "ac": true,
+            "heater": true
+            }
+        }, 
     "room3": {
         "img": "./Images/Rooms/Room3/img.webp",
         "size": "300sqft",
         "location": "1365 West Lafayette, IN",
         "price": "50$/hr", 
-        "capacity": "4 people"}    
+        "capacity": "4 people",
+        "details": {
+            "pet_friendly": true,
+            "food": true,
+            "wifi": true,
+            "parking": true,
+            "projector": true,
+            "whiteboard": true,
+            "printer": true,
+            "ac": true,
+            "heater": true
+            }
+        }
 }

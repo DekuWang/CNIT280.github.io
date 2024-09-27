@@ -33,6 +33,8 @@
 </style>
 <script>
     function initialize(){
+        var urlParams = new URLSearchParams(window.location.search);
+        
         fetch("./database/room_information.json")
         .then(response => response.json())
         .then(data => {
@@ -87,12 +89,15 @@
             tr.appendChild(td);
             td = document.createElement("td");
             // book button
-            let button = document.createElement("button");
-            button.innerHTML = "Book";
-            button.onclick = function(){
-                window.location.href = "room_information.html?room=" + room;
-            }
-            td.appendChild(button);
+            var book_button = document.createElement("button");
+            book_button.innerHTML = "View Details";
+            td.appendChild(book_button);
+            book_button.onclick = (function(room){
+                return function(){
+                window.location.href = "room_information.html?room=" + room + "&username=" + urlParams.get('username');
+                }
+            })(room);
+            
             tr.appendChild(td);
             table.appendChild(tr);
         }
@@ -110,6 +115,9 @@
     <div id = getback>
         <button>
             <img src="/Images/back_icon.png" width="50" height="50" onclick="history.back()">
+        </button>
+        <button>
+            <img src="/Images/feedback.png" width="50" height="50" onclick="location.href = 'feedback.html'">
         </button>
     </div>
 </body>

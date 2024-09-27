@@ -4,8 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src = "script.js"></script>
 </head>
-<body>
-    
+<script>
+    function mklink(){
+        view_rooms = document.getElementById("view_rooms");
+        view_rooms.innerHTML = "View Rooms";
+        view_rooms.href = "room_list.html?username=" + username;
+    }
+</script>
+<style>
+    body{
+        background: #f1f1f1;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+</style>
+<body onload="mklink();">
+    <h1>LOGIN SUCCESSFULLY</h1>
+    <p id="login_hello">Hello </p>
+
+
+    <a id = "view_rooms">View Rooms</a>
 </body>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    if (username){
+        document.getElementById("login_hello").innerHTML += username;
+    }
+    else{
+        document.getElementById("login_hello").innerHTML += "Guest";
+    }
+
+</script>
 </html>

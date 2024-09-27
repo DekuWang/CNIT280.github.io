@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function feedback_submit(){
+        alert("Feedback submitted successfully!");
+    }
+</script>
+<body>
+    <h1>Feedback Form</h1>
+
+    <form action="feedback.php" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="feedback">Feedback:</label><br>
+        <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br><br>
+    </form>
+    
+    <input type="submit" value="Submit" onclick="feedback_submit()">
+
+
+    <div id = getback>
+        <button>
+            <img src="/Images/back_icon.png" width="50" height="50" onclick="history.back()">
+        </button>
+    </div>
+
+
+</body>
+</html>
