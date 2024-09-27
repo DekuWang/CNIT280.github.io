@@ -26,7 +26,7 @@
         var details = data[room].details;
         
         for (var i in details){
-            document.getElementsByName("Details")[0].children[1].innerHTML += details[i] + "<br>";
+            document.getElementsByName("Details")[0].children[1].innerHTML += "<img src =" + details[i] + " height='50pt'><br>" + i + "<br><br>";
         }
     });
 

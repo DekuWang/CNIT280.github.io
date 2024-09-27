@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="25px" viewBox="0 0 18 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>flipboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="flipboard" transform="translate(1.000000, 0.000000)" stroke="#4C4C4C" stroke-width="1.1">
+            <path d="M16,17.7 L0,17.7 L0,1.4 C0,1.1 0.2,0.8 0.6,0.8 L15.4,0.8 C15.7,0.8 16,1 16,1.4 L16,17.7 Z" id="Path"></path>
+            <polyline id="Path" points="0 24 0 4 15.9 4"></polyline>
+            <path d="M8,17.7 L8,21.2" id="Path"></path>
+            <path d="M16,17.3 L16,24" id="Path"></path>
+        </g>
+    </g>
+</svg>

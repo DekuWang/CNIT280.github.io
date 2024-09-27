@@ -6,15 +6,16 @@
         "price": "80$/hr", 
         "capacity": "8 people",
         "details": {
-            "pet_friendly": true,
-            "food": true,
-            "wifi": true,
-            "parking": true,
-            "projector": true,
-            "whiteboard": true,
-            "printer": true,
-            "ac": true,
-            "heater": true
+            "chair": "./Images/Details/chair.svg",
+            "coffee": "./Images/Details/coffee.svg",
+            "printer": "./Images/Details/printer.svg",
+            "projector": "./Images/Details/projector.svg",
+            "publiv transit": "./Images/Details/public_transit.svg",
+            "screen": "./Images/Details/screen.svg",
+            "table": "./Images/Details/table.svg",
+            "toilet": "./Images/Details/toilet.svg",
+            "whiteboard": "./Images/Details/whiteboard.svg",
+            "wifi": "./Images/Details/wifi.svg"
             }
         }, 
     "room2": {
@@ -24,15 +25,16 @@
         "price": "100$/hr", 
         "capacity": "10 people",
         "details": {
-            "pet_friendly": true,
-            "food": true,
-            "wifi": true,
-            "parking": true,
-            "projector": true,
-            "whiteboard": true,
-            "printer": true,
-            "ac": true,
-            "heater": true
+            "chair": "./Images/Details/chair.svg",
+            "coffee": "./Images/Details/coffee.svg",
+            "printer": "./Images/Details/printer.svg",
+            "projector": "./Images/Details/projector.svg",
+            "publiv transit": "./Images/Details/public_transit.svg",
+            "screen": "./Images/Details/screen.svg",
+            "table": "./Images/Details/table.svg",
+            "toilet": "./Images/Details/toilet.svg",
+            "whiteboard": "./Images/Details/whiteboard.svg",
+            "wifi": "./Images/Details/wifi.svg"
             }
         }, 
     "room3": {
@@ -42,15 +44,16 @@
         "price": "50$/hr", 
         "capacity": "4 people",
         "details": {
-            "pet_friendly": true,
-            "food": true,
-            "wifi": true,
-            "parking": true,
-            "projector": true,
-            "whiteboard": true,
-            "printer": true,
-            "ac": true,
-            "heater": true
+            "chair": "./Images/Details/chair.svg",
+            "coffee": "./Images/Details/coffee.svg",
+            "printer": "./Images/Details/printer.svg",
+            "projector": "./Images/Details/projector.svg",
+            "publiv transit": "./Images/Details/public_transit.svg",
+            "screen": "./Images/Details/screen.svg",
+            "table": "./Images/Details/table.svg",
+            "toilet": "./Images/Details/toilet.svg",
+            "whiteboard": "./Images/Details/whiteboard.svg",
+            "wifi": "./Images/Details/wifi.svg"
             }
         }
 }
