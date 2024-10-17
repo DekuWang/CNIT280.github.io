@@ -1,4 +1,5 @@
 AI_CHAT_URL = "http://150.158.98.116:8088/api/v1/sync/sapi-sby6jHjBAoL7/s?user_message=";
+CORS_Solution = "https://cors-anywhere.herokuapp.com/";
 
 // load-chat.js
 function loadChat() {
@@ -43,7 +44,12 @@ function responseMessage(message_input) {
     const newMessage = document.createElement("p"); 
     
     console.log(message_input.textContent);
-    fetch(AI_CHAT_URL + message_input.textContent).then(function (response) {
+    fetch(CORS_Solution + AI_CHAT_URL + message_input.textContent, {
+        method: "GET",
+        headers: {
+            "Origin": AI_CHAT_URL + message_input.textContent
+        }
+    }).then(function (response) {
         return response.json();
     }).then(function (data) {
         newMessage.textContent = data.content;
