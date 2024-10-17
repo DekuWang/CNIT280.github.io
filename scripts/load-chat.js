@@ -1,3 +1,5 @@
+AI_CHAT_URL = "http://150.158.98.116:8088/api/v1/sync/sapi-sby6jHjBAoL7/s?user_message=";
+
 // load-chat.js
 function loadChat() {
     const xhr = new XMLHttpRequest();
@@ -32,14 +34,20 @@ function sendMessage() {
         messagesDiv.appendChild(newMessage);
         input.value = ""; // Clear the input field
         messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
-        responseMessage();
+        responseMessage(newMessage);
     }
 }
 
-function responseMessage() {
+function responseMessage(message_input) {
     const messagesDiv = document.querySelector(".messages");
-    const newMessage = document.createElement("p");
-    newMessage.textContent = "I'm sorry, I don't understand.";
-    messagesDiv.appendChild(newMessage);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
+    const newMessage = document.createElement("p"); 
+    
+    console.log(message_input.textContent);
+    fetch(AI_CHAT_URL + message_input.textContent).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        newMessage.textContent = data.content;
+        messagesDiv.appendChild(newMessage);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
+    });
 }
