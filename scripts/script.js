@@ -1,13 +1,19 @@
 // Login API : http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s?
 // password=INPUT_BY_CALLER&input_username=INPUT_BY_CALLER
 
+var cors_solution = `https://cors-anywhere.herokuapp.com/`
 function validateLogin() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
     var login_request = `http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s?input_username=${username}&password=${password}`;
 
-    fetch(login_request)
+    console.log(cors_solution + login_request);
+
+    fetch(cors_solution + login_request, {headers: {
+        'origin' : 'http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s'
+    }
+    })
     .then(response => response.json())
     .then(data => {
         const userDB = data;
@@ -30,7 +36,9 @@ function registerUser() {
 
     var register_request = `http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s?password=${password}&input_username=${username}`;
 
-    fetch(register_request)
+    fetch(cors_solution + register_request, {headers: {
+        'origin' : 'http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s'
+    }})
     .then(response => response.json())
     .then(data => {
         const result = data;
