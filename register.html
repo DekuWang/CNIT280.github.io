@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="scripts/script.js"></script>
+</head>
+<style>
+    #getback {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    }
+    body{
+        background: #f1f1f1;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+</style>
+<body>
+    <div id = "Register">
+        <h1>Register</h1>
+        <form onsubmit="event.preventDefault(); registerUser();">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id = getback>
+        <button>
+            <img src="./Images/back_icon.png" width="50" height="50" onclick="history.back()">
+        </button>
+    </div>
+</body>
+</html>

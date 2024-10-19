@@ -53,6 +53,7 @@ function responseMessage(message_input) {
         return response.json();
     }).then(function (data) {
         newMessage.textContent = data.content;
+        console.log(data.content);
         messagesDiv.appendChild(newMessage);
         messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
     });
