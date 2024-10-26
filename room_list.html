@@ -1,127 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-    
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-
-    body{
-        background: #f1f1f1;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-    #getback {
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-    }
-</style>
-<script>
-    function initialize(){
-        var urlParams = new URLSearchParams(window.location.search);
-        
-        fetch("./database/room_information.json")
-        .then(response => response.json())
-        .then(data => {
-        console.log(data);
-
-        let table = document.createElement("table");
-        let tr = document.createElement("tr");
-        let th = document.createElement("th");
-        th.innerHTML = "";
-        tr.appendChild(th);
-        th = document.createElement("th");
-        th.innerHTML = "Size";
-        tr.appendChild(th);
-        th = document.createElement("th");
-        th.innerHTML = "Location";
-        tr.appendChild(th);
-        th = document.createElement("th");
-        th.innerHTML = "Price";
-        tr.appendChild(th);
-        th = document.createElement("th");
-        th.innerHTML = "Capacity";
-        tr.appendChild(th);
-        th = document.createElement("th");
-        th.innerHTML = "";
-        tr.appendChild(th);
-        table.appendChild(tr);
-        for (var room in data){
-            console.log(data[room]);
-            tr = document.createElement("tr");
-            let td = document.createElement("td");
-            // image
-            var img = new Image();
-            img.src = data[room].img;
-            img.height, img.width = 100, 100;
-            td.innerHTML = img.outerHTML;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            // size
-            td.innerHTML = data[room].size;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            // location
-            td.innerHTML = data[room].location;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            // price
-            td.innerHTML = data[room].price;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            // capacity
-            td.innerHTML = data[room].capacity;
-            tr.appendChild(td);
-            td = document.createElement("td");
-            // book button
-            var book_button = document.createElement("button");
-            book_button.innerHTML = "View Details";
-            td.appendChild(book_button);
-            book_button.onclick = (function(room){
-                return function(){
-                window.location.href = "room_information.html?room=" + room + "&username=" + urlParams.get('username');
-                }
-            })(room);
-            
-            tr.appendChild(td);
-            table.appendChild(tr);
-        }
-        document.body.appendChild(table);
-    });
-    }
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Room List</title>
+    <style>
+        /* Table Styling */
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        /* Body Styling */
+        body {
+            background: #f1f1f1;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+        /* Back and Feedback Button Styling */
+        #getback {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+        #getback button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body onload="initialize()">
     <h1>Room List</h1>
-    <div id = getback>
+    <div id="getback">
         <button>
-            <img src="./Images/back_icon.png" width="50" height="50" onclick="history.back()">
+            <img src="./Images/back_icon.png" width="50" height="50" alt="Back" onclick="history.back()">
         </button>
         <button>
-            <img src="./Images/feedback.png" width="50" height="50" onclick="location.href = 'feedback.html'">
+            <img src="./Images/feedback.png" width="50" height="50" alt="Feedback" onclick="location.href = 'feedback.html'">
         </button>
     </div>
+
+    <script>
+        function initialize() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            fetch("./database/room_information.json")
+                .then(response => response.json())
+                .then(data => {
+                    const table = document.createElement("table");
+                    
+                    // Table Header
+                    const headerRow = document.createElement("tr");
+                    ["", "Size", "Location", "Price", "Capacity", ""].forEach(header => {
+                        const th = document.createElement("th");
+                        th.textContent = header;
+                        headerRow.appendChild(th);
+                    });
+                    table.appendChild(headerRow);
+
+                    // Table Rows
+                    for (const room in data) {
+                        const roomData = data[room];
+                        const row = document.createElement("tr");
+
+                        // Room Image
+                        let td = document.createElement("td");
+                        const img = new Image(100, 100);
+                        img.src = roomData.img;
+                        img.alt = "Room Image";
+                        td.appendChild(img);
+                        row.appendChild(td);
+
+                        // Room Details (Size, Location, Price, Capacity)
+                        ["size", "location", "price", "capacity"].forEach(attr => {
+                            td = document.createElement("td");
+                            td.textContent = roomData[attr];
+                            row.appendChild(td);
+                        });
+
+                        // View Details Button
+                        td = document.createElement("td");
+                        const bookButton = document.createElement("button");
+                        bookButton.textContent = "View Details";
+                        bookButton.onclick = () => {
+                            window.location.href = `room_information.html?room=${room}&username=${encodeURIComponent(urlParams.get('username'))}`;
+                        };
+                        td.appendChild(bookButton);
+                        row.appendChild(td);
+
+                        table.appendChild(row);
+                    }
+                    document.body.appendChild(table);
+                })
+                .catch(error => console.error('Error fetching room data:', error));
+        }
+    </script>
+    <script src="scripts/load-chat.js" defer></script>
 </body>
-<script src="scripts/load-chat.js"></script>
 </html>

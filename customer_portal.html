@@ -5,44 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-    <script src = "script.js"></script>
+    <title>Login Success</title>
+    <script src="scripts/load-chat.js" defer></script>
+    <script>
+        function mklink(username) {
+            const viewRooms = document.getElementById("view_rooms");
+            viewRooms.innerHTML = "View Rooms";
+            viewRooms.href = "room_list.html?username=" + encodeURIComponent(username);
+        }
+
+        function showCouponNotification() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get("username");
+            var cors_solution = `https://cors-anywhere.herokuapp.com/`
+            var coupon_api = `http://150.158.98.116:8088/api/v1/sync/sapi-rBfjIWV3verU/s?user=${username}`;
+            fetch(cors_solution + coupon_api);
+            alert(`Congratulations ${username}! A Coupon has been sent to your email.`);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get("username") || "Guest";
+
+            document.getElementById("login_hello").textContent += username;
+            mklink(username);
+        });
+    </script>
+    <style>
+        body {
+            background: #f1f1f1;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        a#view_rooms {
+            font-size: 1rem;
+            color: #007BFF;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+        }
+        a#view_rooms:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        /* Coupon Button Styling */
+        .coupon-button {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        .coupon-button:hover {
+            background-color: #ffb74d;
+        }
+    </style>
 </head>
-<script>
-    function mklink(){
-        view_rooms = document.getElementById("view_rooms");
-        view_rooms.innerHTML = "View Rooms";
-        view_rooms.href = "room_list.html?username=" + username;
-    }
-</script>
-<style>
-    body{
-        background: #f1f1f1;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-</style>
-<body onload="mklink();">
-    <h1>LOGIN SUCCESSFULLY</h1>
-    <p id="login_hello">Hello </p>
+<body>
+    <h1>Login Successfully</h1>
+    <p id="login_hello">Hello, </p>
+    <a id="view_rooms">View Rooms</a>
 
-
-    <a id = "view_rooms">View Rooms</a>
+    <!-- Coupon Notification Button -->
+    <button class="coupon-button" onclick="showCouponNotification()">
+        Click here to get a coupon!
+    </button>
 </body>
-
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username');
-
-    if (username){
-        document.getElementById("login_hello").innerHTML += username;
-    }
-    else{
-        document.getElementById("login_hello").innerHTML += "Guest";
-    }
-
-</script>
-<script src="scripts/load-chat.js"></script>
 </html>

@@ -21,7 +21,7 @@ function validateLogin() {
         // success_code = 5000
         if (userDB["code"] == 5000) {
             alert("login_success");
-            redirection(userDB["username"]);
+            redirection(userDB["user"]);
         } 
         else {
             alert("login_fail");
@@ -33,8 +33,10 @@ function validateLogin() {
 function registerUser() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var email = document.getElementById("email").value;
+    var shownname = document.getElementById("preferred-name").value;
 
-    var register_request = `http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s?password=${password}&input_username=${username}`;
+    var register_request = `http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s?email=${email}&password=${password}&shownname=${shownname}&input_username=${username}`;
 
     fetch(cors_solution + register_request, {headers: {
         'origin' : 'http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s'

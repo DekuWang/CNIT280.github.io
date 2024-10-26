@@ -5,139 +5,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const room = urlParams.get('room');
-
-    fetch("./database/room_information.json")
-    .then(response => response.json())
-    .then(data => {
-        document.getElementsByName("Image")[0].children[0].children[0].src = data[room].img;
-
-
-        document.getElementsByName("Size")[0].children[1].innerHTML = data[room].size;
-
-        document.getElementsByName("Location")[0].children[1].innerHTML = data[room].location;
-
-        document.getElementsByName("Price")[0].children[1].innerHTML = data[room].price;
-        
-        document.getElementsByName("Capacity")[0].children[1].innerHTML = data[room].capacity;
-        
-        var details = data[room].details;
-        
-        for (var i in details){
-            document.getElementsByName("Details")[0].children[1].innerHTML += "<img src =" + details[i] + " height='50pt'><br>" + i + "<br><br>";
+    <title>Room Details</title>
+    <style>
+        /* General Styling */
+        body {
+            background: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
-    });
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+        td, th {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .center {
+            display: block;
+            margin: 20px auto;
+            width: 60%;
+        }
+        /* Details Table Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+        .details-item {
+            font-size: 14px;
+            padding: 10px;
+        }
+        .details-item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 5px;
+        }
+        /* Buttons */
+        #BookNow, #Subscribe {
+            margin: 20px 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #BookNow:hover, #Subscribe:hover {
+            background-color: #45a049;
+        }
+        #getback {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+        #getback button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const room = urlParams.get('room');
 
-    function book_now(){
-        var next_page = "payment.html?room=" + room + "&date=" + document.getElementById("date-select").value + "&username=" + urlParams.get('username');
-        window.location.href = next_page;
-    }
+        fetch("./database/room_information.json")
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector("[name='Image'] img").src = data[room].img;
+                document.querySelector("[name='Size'] td:nth-child(2)").textContent = data[room].size;
+                document.querySelector("[name='Location'] td:nth-child(2)").textContent = data[room].location;
+                document.querySelector("[name='Price'] td:nth-child(2)").textContent = data[room].price;
+                document.querySelector("[name='Capacity'] td:nth-child(2)").textContent = data[room].capacity;
 
-    function date_restriction(){
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        var yyyy = today.getFullYear();
+                const detailsContainer = document.querySelector(".details-grid");
+                const details = data[room].details;
 
-        today = yyyy + '-' + mm + '-' + dd;
-        max_date = yyyy + '-' + (parseInt(mm) + 1) + '-' + dd;
-        document.getElementById("date-select").setAttribute("min", today);
-        document.getElementById("date-select").setAttribute("max", max_date);
-    }
-</script>
-<style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
+                Object.entries(details).forEach(([key, value]) => {
+                    const detailDiv = document.createElement("div");
+                    detailDiv.className = "details-item";
+                    detailDiv.innerHTML = `<img src="${value}" alt="${key}"><br>${key}`;
+                    detailsContainer.appendChild(detailDiv);
+                });
+            });
 
-    body{
-        background: #f1f1f1;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
+        function book_now() {
+            const selectedDate = document.getElementById("date-select").value;
+            const nextPage = `payment.html?room=${room}&date=${selectedDate}&username=${urlParams.get('username')}`;
+            window.location.href = nextPage;
+        }
 
-    #getback {
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-    }
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-    }
-</style>
+        function subscribe() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get("username");
+            const room = urlParams.get("room");
+            var cors_solution = `https://cors-anywhere.herokuapp.com/`
+            var subscribe_api = `http://150.158.98.116:8088/api/v1/sync/sapi-rpBMOVJvyQom/s?user=${username}&house=${room}`;
+            fetch(cors_solution + subscribe_api);
+            alert("You've successfully subscribed to room updates!");
+        }
+
+        function date_restriction() {
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const yyyy = today.getFullYear();
+
+            const minDate = `${yyyy}-${mm}-${dd}`;
+            const maxDate = `${yyyy}-${(parseInt(mm) + 1).toString().padStart(2, '0')}-${dd}`;
+
+            const dateSelect = document.getElementById("date-select");
+            dateSelect.setAttribute("min", minDate);
+            dateSelect.setAttribute("max", maxDate);
+        }
+    </script>
+</head>
 <body onload="date_restriction()">
     <table>
         <thead>
-            <tr name = "Image">
+            <tr name="Image">
                 <th colspan="3">
-                    <img src="./Images/Rooms/Room1/img.webp" height="500pt" class="center">
+                    <img src="./Images/Rooms/Room1/img.webp" height="500pt" class="center" alt="Room Image">
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr name = Size>
+            <tr name="Size">
                 <td>Size</td>
                 <td colspan="2"></td>
             </tr>
-            <tr name = Location>
+            <tr name="Location">
                 <td>Location</td>
                 <td colspan="2"></td>
             </tr>
-            <tr name = Price>
+            <tr name="Price">
                 <td>Price</td>
                 <td colspan="2"></td>
             </tr>
-            <tr name = Capacity>
+            <tr name="Capacity">
                 <td>Capacity</td>
                 <td colspan="2"></td>
             </tr>
-            <tr name = Details>
+            <tr name="Details">
                 <td>Details</td>
-                <td colspan="2"></td>
+                <td colspan="2">
+                    <!-- Details in Grid Format -->
+                    <div class="details-grid"></div>
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <tr name="Date">
-        <td>Date</td>
-        <td colspan="2">
-            <input type="date" id="date-select">
-        </td>
-    </tr>
-
-    <button id = BookNow onclick = "book_now()">Book Now!</button>
-
-    <div id = getback>
-        <button>
-            <img src="./Images/back_icon.png" width="50" height="50" onclick="history.back()">
-        </button>
-        <button>
-            <img src="./Images/feedback.png" width="50" height="50" onclick="location.href = 'feedback.html'">
-        </button>
+    <!-- Date Selection and Buttons -->
+    <div>
+        <label for="date-select">Select Date:</label>
+        <input type="date" id="date-select">
+        <br><br>
+        <button id="BookNow" onclick="book_now()">Book Now!</button>
+        <button id="Subscribe" onclick="subscribe()">Subscribe to Updates</button>
     </div>
 
-    
+    <div id="getback">
+        <button onclick="history.back()">
+            <img src="./Images/back_icon.png" width="50" height="50" alt="Back">
+        </button>
+        <button onclick="location.href = 'feedback.html'">
+            <img src="./Images/feedback.png" width="50" height="50" alt="Feedback">
+        </button>
+    </div>
 </body>
 <script src="scripts/load-chat.js"></script>
 </html>

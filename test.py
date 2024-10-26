@@ -33,6 +33,7 @@ def login(input_username: str, password: str):
 
 def register(input_username: str, password: str):
     db = connect_redis()
+    test = dict()
     
     if db.hget(name = "user", key = input_username):
         return USERNAME_DUPLICATED_ERROR
@@ -62,3 +63,10 @@ USERNAME_DUPLICATED_ERROR = {
     "code" : 1002,
     "message" : "Username already used, please use other username"
 }
+
+
+import arrow
+
+print(arrow.get("9999-12-31"))
+
+test_ = dict()
