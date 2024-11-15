@@ -62,7 +62,7 @@
     
     <!-- Search Bar -->
     <div class="search-container">
-        <input type="text" id="searchBar" placeholder="Search by location, size, or capacity..." oninput="filterRooms()">
+        <input type="text" id="searchBar" placeholder="Search by location, price, or capacity..." oninput="filterRooms()">
     </div>
 
     <div id="getback">
@@ -147,7 +147,8 @@
                 Object.entries(roomData).filter(([key, value]) => 
                     value.size.toLowerCase().includes(query) ||
                     value.location.toLowerCase().includes(query) ||
-                    value.capacity.toLowerCase().includes(query)
+                    value.capacity.toLowerCase().includes(query) ||
+                    value.price.toLowerCase().includes(query)
                 )
             );
             renderTable(filteredData, new URLSearchParams(window.location.search));
