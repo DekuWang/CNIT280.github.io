@@ -8,15 +8,15 @@
     <title>Login Success</title>
     <script src="scripts/load-chat.js" defer></script>
     <script>
-        function mklink(username) {
+        function mklink(username, shownname) {
             const viewRooms = document.getElementById("view_rooms");
             viewRooms.innerHTML = "View Rooms";
-            viewRooms.href = "room_list.html?username=" + encodeURIComponent(username);
+            viewRooms.href = "room_list.html?username=" + encodeURIComponent(username) + "&shownname=" + encodeURIComponent(shownname);
         }
 
         function showCouponNotification() {
             const urlParams = new URLSearchParams(window.location.search);
-            const username = urlParams.get("username");
+            const username = urlParams.get("shownname");
             var cors_solution = `https://cors-anywhere.herokuapp.com/`
             var coupon_api = `http://150.158.98.116:8088/api/v1/sync/sapi-rBfjIWV3verU/s?user=${username}`;
             fetch(cors_solution + coupon_api);
@@ -26,9 +26,10 @@
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const username = urlParams.get("username") || "Guest";
+            const shownname = urlParams.get("shownname") || "Guest";
 
-            document.getElementById("login_hello").textContent += username;
-            mklink(username);
+            document.getElementById("login_hello").textContent += shownname;
+            mklink(username, shownname);
         });
     </script>
     <style>

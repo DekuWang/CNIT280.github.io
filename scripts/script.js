@@ -21,7 +21,7 @@ function validateLogin() {
         // success_code = 5000
         if (userDB["code"] == 5000) {
             alert("login_success");
-            redirection(userDB["user"]);
+            redirection(userDB["username"], userDB["shownname"]);
         } 
         else {
             alert("login_fail");
@@ -48,7 +48,8 @@ function registerUser() {
         // success_code = 5000
         if (result["code"] == 5000) {
             alert(result["message"]);
-            redirection(username);
+            // redirection(username);
+            window.location.href = `index.html`;
         } 
         else {
             alert(result["message"]);
@@ -75,8 +76,8 @@ function registerUser() {
 
 
 
-function redirection(username = NaN){
-    window.location.href = `customer_portal.html?username=${username}`;
+function redirection(username = NaN, shownname = NaN) {
+    window.location.href = `customer_portal.html?username=${username}&shownname=${shownname}`;
 }
 
 function test(){

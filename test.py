@@ -1,5 +1,11 @@
 import redis
 import json
+from hashlib import sha256
+
+SALT = "CNIT280"
+
+test_str = "114514"
+print(sha256((test_str + SALT).encode()).hexdigest())
 
 def connect_redis():
     r = redis.Redis(host = "redis", port = 6379, db = 0, decode_responses = True)
@@ -65,8 +71,24 @@ USERNAME_DUPLICATED_ERROR = {
 }
 
 
-import arrow
+def hashing(func):
+    def go_hash(input_str: str):
+        """
+        For hashing the given string
+        """
+        hash_value = sha256((input_str+SALT).encode()).hexdigest()
+        return hash_value
+    def inner(a: str, b: str):
+        print("111111")
+        a,b = go_hash(a), go_hash(b)
+        return func(a,b)
+    return inner
 
-print(arrow.get("9999-12-31"))
+@hashing
+def test_hash(test1, test2):
+    print(test1)
+    print(test2)
 
-test_ = dict()
+test_hash("114514", "1919810")
+
+print(type(sha256("114514".encode()).hexdigest()))
