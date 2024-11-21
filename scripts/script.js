@@ -1,7 +1,9 @@
 // Login API : http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s?
 // password=INPUT_BY_CALLER&input_username=INPUT_BY_CALLER
 
-var cors_solution = `https://cors-anywhere.herokuapp.com/`
+// var cors_solution = `https://cors-anywhere.herokuapp.com/`
+var cors_solution = ``
+
 function validateLogin() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
@@ -21,6 +23,8 @@ function validateLogin() {
         // success_code = 5000
         if (userDB["code"] == 5000) {
             alert("login_success");
+            document.cookie = `username=${userDB["username"]}; expires = ${1}`;
+            document.cookie = `shownname=${userDB["shownname"]}`;
             redirection(userDB["username"], userDB["shownname"]);
         } 
         else {

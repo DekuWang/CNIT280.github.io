@@ -92,3 +92,18 @@ def test_hash(test1, test2):
 test_hash("114514", "1919810")
 
 print(type(sha256("114514".encode()).hexdigest()))
+
+
+result = [2,3,3,2,4,
+3,
+3,
+4,
+1,
+2,
+3,
+3,
+2,
+2,
+3]
+
+print(sum([result[0], result[4], result[6]]))

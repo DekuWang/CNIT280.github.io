@@ -49,6 +49,23 @@
         #back_to_portal:hover {
             background-color: #45a049;
         }
+
+        /* Report Link */
+        #report {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        #report:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body onload="initialization()">
@@ -69,6 +86,10 @@
 
     <a id="back_to_portal">Back to Customer Dashboard</a>
 
+    <a id="report" onclick="report()">Report</a>
+
+
+
     <script>
         function initialization() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -87,7 +108,18 @@
 
             document.getElementById("back_to_portal").href = "customer_portal.html?username=" + encodeURIComponent(username);
         }
+
+        function report() {
+            window.open(
+                "report.html",
+                "_blank",
+                "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400"
+            );
+        }
     </script>
 
 </body>
+
+
+
 </html>
