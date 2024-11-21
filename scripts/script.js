@@ -1,8 +1,8 @@
 // Login API : http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s?
 // password=INPUT_BY_CALLER&input_username=INPUT_BY_CALLER
 
-// var cors_solution = `https://cors-anywhere.herokuapp.com/`
-var cors_solution = ``
+var cors_solution = `https://cors-anywhere.herokuapp.com/`
+// var cors_solution = ``
 
 function validateLogin() {
     var username = document.getElementById("username").value;
