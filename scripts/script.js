@@ -8,12 +8,12 @@ function validateLogin() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
-    var login_request = `http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s?input_username=${username}&password=${password}`;
+    var login_request = `http://43.135.166.229:8088/api/v1/sync/sapi-JI5ncdbuyPLj/s?password=${password}&input_username=${username}`;
 
     console.log(cors_solution + login_request);
 
     fetch(cors_solution + login_request, {headers: {
-        'origin' : 'http://150.158.98.116:8088/api/v1/sync/sapi-JhlaSSieDOpw/s'
+        'origin' : 'http://43.135.166.229:8088/api/v1/sync/sapi-JI5ncdbuyPLj/s'
     }
     })
     .then(response => response.json())
@@ -40,10 +40,10 @@ function registerUser() {
     var email = document.getElementById("email").value;
     var shownname = document.getElementById("preferred-name").value;
 
-    var register_request = `http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s?email=${email}&password=${password}&shownname=${shownname}&input_username=${username}`;
+    var register_request = `http://43.135.166.229:8088/api/v1/sync/sapi-rG3tiGkYsjYS/s?email=${email}&password=${password}&shownname=${shownname}&input_username=${username}`;
 
     fetch(cors_solution + register_request, {headers: {
-        'origin' : 'http://150.158.98.116:8088/api/v1/sync/sapi-3uLhKWhTX19z/s'
+        'origin' : 'http://43.135.166.229:8088/api/v1/sync/sapi-rG3tiGkYsjYS/s'
     }})
     .then(response => response.json())
     .then(data => {

@@ -111,7 +111,7 @@
             const username = urlParams.get("username");
             const room = urlParams.get("room");
             var cors_solution = `https://cors-anywhere.herokuapp.com/`
-            var subscribe_api = `http://150.158.98.116:8088/api/v1/sync/sapi-rpBMOVJvyQom/s?user=${username}&house=${room}`;
+            var subscribe_api = `http://43.135.166.229:8088/api/v1/sync/sapi-oSxQp3Sd9ZDO/s?user=${username}&house=${room}`;
             fetch(cors_solution + subscribe_api);
             alert("You've successfully subscribed to room updates!");
         }

@@ -1,4 +1,4 @@
-AI_CHAT_URL = "http://150.158.98.116:8088/api/v1/sync/sapi-sby6jHjBAoL7/s?user_message=";
+AI_CHAT_URL = "http://43.135.166.229:8088/api/v1/sync/sapi-m6UjmN6Ub3u6/s?user_message=";
 CORS_Solution = "https://cors-anywhere.herokuapp.com/";
 
 // load-chat.js
