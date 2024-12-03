@@ -16,11 +16,13 @@
 
         function showCouponNotification() {
             const urlParams = new URLSearchParams(window.location.search);
-            const username = urlParams.get("shownname");
+            const username = urlParams.get("username");
+            const shownname = urlParams.get("shownname");
+
             var cors_solution = `https://cors-anywhere.herokuapp.com/`
             var coupon_api = `http://43.135.166.229:8088/api/v1/sync/sapi-GuLiYn6TmOye/s?user=${username}`;
             fetch(cors_solution + coupon_api);
-            alert(`Congratulations ${username}! A Coupon has been sent to your email.`);
+            alert(`Congratulations ${shownname}! A Coupon has been sent to your email.`);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
